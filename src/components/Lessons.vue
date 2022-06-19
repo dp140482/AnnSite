@@ -1,9 +1,13 @@
 <template>
     <div class="lessons">
-        <div v-for="(item, index) in lessonsList" class="lesson lesson_active">
-            <span class="number">{{ index + 1 }}</span>
-            {{ item }}
-        </div>
+        <a 
+            v-for="(item, index) in lessonsList"
+            :href="item.video"
+            class="lesson lesson_active lesson-link"
+        >
+                <span class="number">{{ index + 1 }}</span>
+                {{ item.title }}
+        </a>
     </div>
 </template>
 
@@ -12,14 +16,14 @@ export default {
     name: 'Lessons',
     data: () => ({
         lessonsList: [
-            'Обзор инструментов',
-            'Обзор материалов',
-            'Жучки',
-            'Клевер',
-            'Кленовый лист',
-            'Перо',
-            'Птица',
-            'Бонусный урок',
+            { title: 'Обзор инструментов' },
+            { title: 'Обзор материалов' }, 
+            { title: 'Жучки' },
+            { title: 'Клевер' },
+            { title: 'Кленовый лист' },
+            { title: 'Перо' },
+            { title: 'Птица' },
+            { title: 'Бонусный урок' },
         ]
     }),
 }
@@ -27,6 +31,7 @@ export default {
 
 <style>
 .lesson {
+    display: block;
     border: 1px solid gainsboro;
     padding: 20px;
     background-color:lavenderblush;
@@ -58,5 +63,8 @@ export default {
     color: black;
     padding: 0 3px;
     font-size: 12pt;
+}
+.lesson-link {
+    text-decoration: none;
 }
 </style>
