@@ -16,15 +16,14 @@ export default {
     name: 'Lessons',
     data: () => ({
         lessonsList: [
-            { title: 'Обзор инструментов' },
-            { title: 'Обзор материалов' }, 
-            { title: 'Жучки' },
-            { title: 'Клевер' },
-            { title: 'Кленовый лист' },
-            { title: 'Перо' },
-            { title: 'Птица' },
-            { title: 'Бонусный урок' },
-        ]
+            { title: 'Создание контура', video: 'https://disk.yandex.ru/i/PdeNe0VGAYZ5xA' },
+            { title: 'Вышивка тела', video: 'https://disk.yandex.ru/i/1r6swyfKrbcCQA' },
+            { title: 'Вышивка крыльев', video: 'https://disk.yandex.ru/i/e_nYtKl6IKDv8w' },
+            { title: 'Изнаночная сторона', video: 'https://disk.yandex.ru/i/ZFpwHSUyfLGKGg' },
+            { title: 'Монтирование лапок', video: 'https://disk.yandex.ru/i/DJexjMMJBZ6RFA' },
+            { title: 'Приклеивание', video: 'https://disk.yandex.ru/i/hY5HEkIuIMn9RQ' },
+            { title: 'Обшивка края', video: 'https://disk.yandex.ru/i/HQHjhqIh3TpWbA' }
+        ],
     }),
 }
 </script>
@@ -34,13 +33,14 @@ export default {
     display: block;
     border: 1px solid gainsboro;
     padding: 20px;
-    background-color:lavenderblush;
+    background-color: lavenderblush;
     margin-bottom: 10px;
     box-shadow: 2px 5px 5px darkred;
     color: #33241b;
+    cursor: pointer;
 }
 .lesson::before {
-    content: 'Модуль ';
+    content: 'Урок ';
 }
 .lesson:first-of-type {
     border-top-left-radius: 20px;
@@ -55,7 +55,7 @@ export default {
     transition: 0.1s all ease-in;
 }
 .lesson_active:hover {
-    transform: scale(1.01);
+    transform: scale(1.05);
 }
 .number {
     border: 1px solid gainsboro;
