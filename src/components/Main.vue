@@ -1,17 +1,34 @@
 <template>
     <div class="middle-container">
         <div class="container">
-            <Lessons />
+            <Modules v-show="showModules" @update="toLessons" />
+            <Lessons v-show="!showModules" />
         </div>
     </div>
 </template>
 
 <script>
 import Lessons from './Lessons.vue'
+import Modules from './Modules.vue'
+import { EventBus } from '@/eventbus.js'
 
 export default {
     name: 'Main',
-    components: { Lessons },
+    components: { Lessons, Modules },
+    data: () => ({
+        showModules: true,
+    }),
+    methods: {
+        toLessons() {
+            this.showModules = false
+            EventBus.$emit('changeToLessons')
+        },
+    },
+    created() {
+        EventBus.$on('changeToModules', () => {
+            this.showModules = true
+        })
+    }
 }
 </script>
 
@@ -23,8 +40,14 @@ export default {
     padding: 15px 0;
 }
 .container {
-    max-width: 1100px;
-    min-width: 450px;
+    max-width: 500px;
+    min-width: 350px;
     width: 80%;
+    position: relative;
+}
+.ontop {
+    position: absolute;
+    left: 217px;
+    top: -94px;
 }
 </style>

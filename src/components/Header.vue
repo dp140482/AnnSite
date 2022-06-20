@@ -1,9 +1,12 @@
 <template>
     <header class="header">
-        <h1 class="heading">
-            <img :src="LogoImg" alt="Логотип" class="logo">
-            Курс &laquo;Создание брошей&raquo;
-        </h1>
+        <div class="heading">
+            <img :src="LogoImg" alt="Логотип" class="logo" @click="onLogoClick">
+            <div class="col">
+                <h1 class="header-text">Курс &laquo;Создание брошей&raquo;</h1>
+                <p v-if = "showLessons" class="module-message">Модуль 1. Пчела</p>
+            </div>
+        </div>
         <button class="burger" id="btn">
             <img src="../assets/burger3.svg" alt="Меню" title="Меню" width="30" height="30"/>
         </button>
@@ -12,12 +15,25 @@
 
 <script>
 import LogoImg from '../assets/лого.png'
+import { EventBus } from '@/eventbus.js'
 
 export default {
   name: 'Header',
   data: () => ({
-    LogoImg
+    LogoImg,
+    showLessons: false,
   }),
+  methods: {
+    onLogoClick() {
+        this.showLessons = false
+        EventBus.$emit('changeToModules')
+    },
+  },
+  created() {
+    EventBus.$on('changeToLessons', () => {
+        this.showLessons = true
+    })
+  }
 }
 </script>
 
@@ -53,7 +69,6 @@ export default {
     position: relative;
 }
 .heading {
-    font-size: 18pt;
     display: flex;
     align-items: flex-start;
 }
@@ -64,6 +79,7 @@ export default {
 .logo {
     width: 125px;
     margin-right: 20px;
+    cursor: pointer;
 }
 .burger {
     background-color: inherit;
@@ -74,5 +90,16 @@ export default {
 }
 .burger:hover {
     transform: scale(1.2);
+}
+.col {
+    display: flex;
+    flex-direction: column;
+}
+.header-text {
+    font-size: 18pt;
+}
+.module-message {
+    padding-top: 10px;
+    font-size: 14pt;
 }
 </style>
